@@ -1,4 +1,5 @@
 from flask_restful import Resource, reqparse
+from werkzeug.security import check_password_hash
 
 from ..models.models import Parcel, User, users, parcels
 

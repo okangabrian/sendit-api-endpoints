@@ -1,3 +1,4 @@
+from werkzeug.security import generate_password_hash
 users = []
 parcels = []
 
@@ -7,7 +8,8 @@ class User():
 
     def __init__(self, username=None, password=None):
         self.username = username
-        self.password = password
+        if password:
+            self.password = generate_password_hash(password)
         self.user_id = User.user_id_counter
 
         self.user_id += 1
