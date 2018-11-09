@@ -1,5 +1,7 @@
 from flask_restful import Resource, reqparse
+from flask_jwt_extended import create_access_token
 from werkzeug.security import check_password_hash
+import datetime
 
 from ..models.models import Parcel, User, users, parcels
 
@@ -38,4 +40,7 @@ class Login(Resource):
 
         if not check_password_hash(user.password, password):
             return {'message': 'incorrect password'}, 401
-        return {"message": 'login successful'}
+        expire = datetime.timedelta(minutes=30)
+        token = create_access_token(user.username, expire)
+
+        return {"token": token, "message": 'login successful'}
