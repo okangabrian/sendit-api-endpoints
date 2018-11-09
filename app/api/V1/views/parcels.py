@@ -30,3 +30,4 @@ class PostParcel(Resource):
         return {"message": "order successful"}, 201
 
         def get(self):
+        return {"orders": [order for order in parcels]}
