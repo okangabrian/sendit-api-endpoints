@@ -29,5 +29,7 @@ class PostParcel(Resource):
 
         return {"message": "order successful"}, 201
 
+    class Get_all_Parcels(Resource):
         def get(self):
+        """ method get all parcel orders"""
         return {"orders": [order for order in parcels]}

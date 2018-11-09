@@ -4,7 +4,6 @@ parcels = []
 
 
 class User():
-
     user_id_counter = 1
 
     def __init__(self, username=None, password=None):
