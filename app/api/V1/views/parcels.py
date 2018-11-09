@@ -28,3 +28,5 @@ class PostParcel(Resource):
         print(parcel_order.orderd_by)
 
         return {"message": "order successful"}, 201
+
+        def get(self):
