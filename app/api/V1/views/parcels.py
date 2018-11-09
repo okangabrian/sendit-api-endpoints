@@ -33,8 +33,7 @@ class PostParcel(Resource):
 class Get_all_Parcels(Resource):
     def get(self):
         """ method get all parcel orders"""
-        return {"orders": [order.serialize() for order in parcels]}
+        return {"orders": [order.serialize() for order in parcels]}, 200
 
-    # class Get_specific_order(Resource):
-    #     def get_specific_order(self)
-    #     """ method specific parcel order by id"""
+
+class Get_specific_parcel_order(Resource):
