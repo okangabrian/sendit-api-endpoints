@@ -42,10 +42,10 @@ class Parcel():
 
     def serialize(self):
         return dict(
-            name: self.name,
-            orderd_by: self.orderd_by,
-            pick_location: self.pickup_location,
-            destination: self.destination,
-            weight: self.weigth,
-            id: self.parcel_id
+            name=self.name,
+            orderd_by=self.orderd_by,
+            pick_location=self.pickup_location,
+            destination=self.destination,
+            weight=self.weight,
+            id=self.parcel_id
         )
