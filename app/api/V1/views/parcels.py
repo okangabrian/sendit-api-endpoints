@@ -37,3 +37,11 @@ class Get_all_Parcels(Resource):
 
 
 class Get_specific_parcel_order(Resource):
+    def get(self, parcel_id):
+        """ method specific parcel order by id"""
+
+        parcel = Parcel().get_parcel_by_id(parcel_id)
+
+        if not parcel:
+            return {"message": "parcel not found"}, 404
+        return{"message": parcel.serialize()}, 200
