@@ -6,6 +6,8 @@ from .api.V1.views.user import PostUser, Login
 from .api.V1.views.parcels import PostParcel
 from .api.V1.views.parcels import Get_specific_parcel_order
 from .api.V1.views.parcels import Get_all_Parcels
+from .api.V1.views.parcels import Cancel_parcel
+
 
 jwt = JWTManager()
 
