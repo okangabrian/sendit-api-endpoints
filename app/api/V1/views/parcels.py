@@ -46,3 +46,17 @@ class Get_specific_parcel_order(Resource):
         if not parcel:
             return {"message": "parcel not found"}, 404
         return{"message": parcel.serialize()}, 200
+
+
+class Cancel_parcel(Resource):
+
+    @jwt_required
+    def put(self, parcelId):
+        '''Cancel a parcel'''
+        parcel = Parcel().get_parcel_by_id(parcel_id)
+
+        if not parcel:
+            return {'message': 'parcel not found'}, 404
+        return {
+            "message": "parcel cancelled successfully"
+        }, 200
