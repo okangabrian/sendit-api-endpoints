@@ -3,7 +3,6 @@ bin-debug/
 bin-release/
 [Oo]bj/
 [Bb]in/
-[Bb]in/
 
 
 
@@ -19,9 +18,11 @@ __pycache__/
 .pytest_cache
 
 # Executables
+*.apk
 *.swf
 *.air
 *.ipa
 *.apk
+
 
 
