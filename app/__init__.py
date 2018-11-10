@@ -3,7 +3,9 @@ from flask import Flask
 from flask_jwt_extended import JWTManager
 from .api.V1.views.user import PostUser, Login
 
-from .api.V1.views.parcels import PostParcel, Get_all_Parcels, Get_specific_parcel_order
+from .api.V1.views.parcels import PostParcel
+from .api.V1.views.parcels import Get_specific_parcel_order
+from .api.V1.views.parcels import Get_all_Parcels
 
 jwt = JWTManager()
 
@@ -18,5 +20,6 @@ def create_up():
     sendIt.add_resource(Get_all_Parcels, '/parcels')
     sendIt.add_resource(Get_specific_parcel_order, '/parcels/<int:parcel_id>')
     sendIt.add_resource(Login, '/auth/login')
+    sendIt.add_resource(Cancel_parcel,  '/<int:parcel_id>/cancel')
 
     return app
