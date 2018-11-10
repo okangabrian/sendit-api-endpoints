@@ -4,6 +4,8 @@ bin-release/
 [Oo]bj/
 [Bb]in/
 
+
+
 # Other files and folders
 *.pyc
 .settings/
@@ -19,3 +21,5 @@ __pycache__/
 *.air
 *.ipa
 *.apk
+*.apk
+
