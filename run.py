@@ -1,14 +1,7 @@
-language: python
+from app import create_up
 
-python:
-    - "3.6"
 
-install:
-    - pip install - r requirements.txt
-    - pip install coveralls
+app = create_up()
 
-script:
-    - nosetests - -with-coverage - -cover-package = app
-
-after_success:
-    - coveralls
+if __name__ == '__main__':
+    app.run(debug=True)
