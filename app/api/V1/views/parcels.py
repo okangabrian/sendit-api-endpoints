@@ -12,7 +12,6 @@ class PostParcel(Resource):
     parser.add_argument("destination", type=str, required=True)
     parser.add_argument("weight", type=int, required=True)
 
-    @jwt_required
     def post(self):
         """ method create parcel order """
         data = PostParcel.parser.parse_args()
@@ -38,9 +37,10 @@ class Get_all_Parcels(Resource):
 
 
 class Get_specific_parcel_order(Resource):
-    def get(self, parcel_id):
-        """ method specific parcel order by id"""
+    parser = reqparse.RequestParser()
 
+    def get(self, parcel_id):
+        """ Get a specific order"""
         parcel = Parcel().get_parcel_by_id(parcel_id)
 
         if not parcel:
@@ -49,14 +49,17 @@ class Get_specific_parcel_order(Resource):
 
 
 class Cancel_parcel(Resource):
-
-    @jwt_required
     def put(self, parcelId):
         '''Cancel a parcel'''
-        parcel = Parcel().get_parcel_by_id(parcel_id)
+        parcel = Parcel().get_parcel_by_id(parcelId)
 
         if not parcel:
             return {'message': 'parcel not found'}, 404
         return {
             "message": "parcel cancelled successfully"
         }, 200
+
+
+class Get_user_parcels(Resource):
+    '''Get parcel orders for specific users'''
+    parser = reqparse.RequestParser()

@@ -19,12 +19,18 @@ class User():
             if user.username == name:
                 return user
 
+    def get_user_by_id(self, user_id):
+        for user in user:
+            if user.user_id == id:
+                return user
+
 
 class Parcel():
     parcel_id_counter = 1
 
-    def __init__(self, price=None, name=None, orderd_by=None,
+    def __init__(self, specific_user=None, price=None, name=None, orderd_by=None,
                  pickup_location=None, destination=None, weight=None):
+        self.specifc_user = specific_user
         self.price = price
         self.name = name
         self.orderd_by = orderd_by
@@ -40,6 +46,11 @@ class Parcel():
         for parcel in parcels:
             if parcel.parcel_id == _id:
                 return parcel
+
+    def get_specific_user_parcels(self, specific_user):
+        userr = [
+            parcel for parcel in parcels if parcel.specific_user == userr]
+        return userr
 
     def serialize(self):
         return dict(
