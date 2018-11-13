@@ -1,7 +1,7 @@
 from ..models.models import Parcel, User, users, parcels
 from flask_restful import Resource, reqparse
-
 from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask import Blueprint,render_template
 
 
 class PostParcel(Resource):
