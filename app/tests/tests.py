@@ -1,13 +1,13 @@
 from unittest import TestCase
 import json
-from app import create_up
+from app import create_app
 
 
 class TestApp(TestCase):
     """ Setting up for testing """
 
     def setUp(self):
-        self.app = create_up()
+        self.app = create_app()
         self.client = self.app.test_client()
         self.app_context = self.app.app_context()
         self.app_context.push()
@@ -68,3 +68,13 @@ class TestApp(TestCase):
             headers={'content-type': 'application/json'}
         )
         self.assertEqual(response.status_code, 201)
+
+    def test_get_parcels(self):
+
+        response = self.client.get(
+            "/parcels",
+            headers={"content-type": "application/json"}
+        )
+        self.assertEqual(response.status, 200)
+
+    def test_get_specific(self):
