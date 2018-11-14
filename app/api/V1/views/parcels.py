@@ -1,7 +1,7 @@
 from ..models.models import Parcel, User, users, parcels
 from flask_restful import Resource, reqparse
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from flask import Blueprint,render_template
+from flask import Blueprint, render_template
 
 
 class PostParcel(Resource):
@@ -30,13 +30,13 @@ class PostParcel(Resource):
         return {"message": "order successful"}, 201
 
 
-class Get_all_Parcels(Resource):
+class GetAllParcels(Resource):
     def get(self):
         """ method get all parcel orders"""
         return {"orders": [order.serialize() for order in parcels]}, 200
 
 
-class Get_specific_parcel_order(Resource):
+class GetSpecificParcelOrder(Resource):
     parser = reqparse.RequestParser()
 
     def get(self, parcel_id):
@@ -48,7 +48,7 @@ class Get_specific_parcel_order(Resource):
         return{"message": parcel.serialize()}, 200
 
 
-class Cancel_parcel(Resource):
+class CancelParcel(Resource):
     def put(self, parcelId):
         '''Cancel a parcel'''
         parcel = Parcel().get_parcel_by_id(parcelId)
@@ -60,6 +60,6 @@ class Cancel_parcel(Resource):
         }, 200
 
 
-class Get_user_parcels(Resource):
+class GetUserParcels(Resource):
     '''Get parcel orders for specific users'''
     parser = reqparse.RequestParser()

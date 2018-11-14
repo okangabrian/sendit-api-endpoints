@@ -12,7 +12,7 @@ class User():
             self.password = generate_password_hash(password)
         self.user_id = User.user_id_counter
 
-        self.user_id += 1
+        User.user_id_counter += 1
 
     def get_user_by_name(self, name):
         for user in users:
@@ -20,7 +20,7 @@ class User():
                 return user
 
     def get_user_by_id(self, user_id):
-        for user in user:
+        for user in users:
             if user.user_id == id:
                 return user
 
@@ -39,7 +39,7 @@ class Parcel():
         self.weight = weight
         self.parcel_id = Parcel.parcel_id_counter
 
-        self.parcel_id += 1
+        Parcel.parcel_id_counter += 1
 
     def get_parcel_by_id(self, _id):
 

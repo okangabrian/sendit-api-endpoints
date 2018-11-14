@@ -12,7 +12,7 @@ from .api.V1.views.parcels import Cancel_parcel
 jwt = JWTManager()
 
 
-def create_up():
+def create_app():
     app = Flask(__name__)
     app.secret_key = "hgsgluglsgurwltteiuwtlaiw"
     jwt.init_app(app)
