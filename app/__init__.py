@@ -7,7 +7,7 @@ from .api.V1.views.parcels import PostParcel
 from .api.V1.views.parcels import GetSpecificParcelOrder
 from .api.V1.views.parcels import GetAllParcels
 from .api.V1.views.parcels import CancelParcel
-
+from .api.V1.views.parcels import GetUserParcels
 
 jwt = JWTManager()
 

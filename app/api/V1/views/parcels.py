@@ -21,54 +21,45 @@ class PostParcel(Resource):
         destination = data["destination"]
         weight = data["weight"]
 
-           if type(price) != int:
-                return {"message": "please enter an integer"}, 400
-            if type(weight) != int:
-                return {"message": "enter a valid weight"}, 400
+        user = get_jwt_identity()
 
-            parcel_order = Parcel(
-                price, name, User, pickup_location, destination, weight)
-            parcels.append(parcel_order)
-            return parcel_order
-            return {"message": "order successful"}, 201
+        parcel_order = Parcel(price, name, user,
+                              pickup_location, destination, weight)
+        parcels.append(parcel_order)
+
+        return {"message": "order successful"}, 201
 
 
-class GetAllParcels(Resource):
+class Get_all_Parcels(Resource):
     def get(self):
         """ method get all parcel orders"""
         return {"orders": [order.serialize() for order in parcels]}, 200
 
 
-class GetSpecificParcelOrder(Resource):
+class Get_specific_parcel_order(Resource):
+    parser = reqparse.RequestParser()
 
-    def get(self, parcelId):
+    def get(self, parcel_id):
         """ Get a specific order"""
-        parcel = Parcel().get_parcel_by_id(parcelId)
+        parcel = Parcel().get_parcel_by_id(parcel_id)
 
         if not parcel:
             return {"message": "parcel not found"}, 404
         return{"message": parcel.serialize()}, 200
 
 
-class CancelParcel(Resource):
+class Cancel_parcel(Resource):
+    def put(self, parcelId):
+        '''Cancel a parcel'''
+        parcel = Parcel().get_parcel_by_id(parcelId)
 
-    def put(self, parcel_id):
-        parcel = Parcel().get_parcel_by_id(parcel_id)
-        if parcel:
-            if parcel.status == "cancelled":
-                return {"message": "parcel already cancelled"}
-            parcel.status == "cancelled"
-            return {"message": "parcel order cancelled"}, 200
-        return {"message": "order not found"}, 400
-
-
-class GetUserParcels(Resource):
-    '''Get parcel orders for specific users'''
-
-    def get(self, userId):
-        user_parcel = User()
-        user_parcels = user_parcel. get_user_parcels(userId)
-
+        if not parcel:
+            return {'message': 'parcel not found'}, 404
         return {
-            'message': user_parcels
+            "message": "parcel cancelled successfully"
         }, 200
+
+
+class Get_user_parcels(Resource):
+    '''Get parcel orders for specific users'''
+    parser = reqparse.RequestParser()
