@@ -49,10 +49,15 @@ class Parcel():
             if parcel.parcel_id == _id:
                 return parcel
 
-    def get_specific_user_parcels(self, specific_user):
-        userr = [
-            parcel for parcel in parcels if parcel.specific_user == user]
+    def get_specific_user_parcels(self, parcelId):
+        user = [
+            parcel for parcel in parcels if parcels["parcel_id"] == parcelId]
         return user
+
+    def get_user_parcels(self, userId):
+        user_parcels = [
+            parcel for parcel in parcels if parcels["specifc_user"] == userId]
+        return user_parcels
 
     def serialize(self):
         '''return tuple as dictionary'''

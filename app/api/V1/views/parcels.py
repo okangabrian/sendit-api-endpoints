@@ -1,4 +1,4 @@
-from ..models.models import Parcel, User, users, parcels
+from .models.models import Parcel, User, users, parcels
 from flask_restful import Resource, reqparse
 from ..utils.validate import validate_username
 from flask import Blueprint, render_template
@@ -25,12 +25,12 @@ class PostParcel(Resource):
             return {"message": "enter a correct name format"}, 400
 
             if type(price) != int:
-                return {"message": "please enter an interger"}, 400
+                return {"message": "please enter an integer"}, 400
             if type(weight) != int:
                 return {"message": "enter a valid weight"}, 400
 
-            parcel_order = Parcel(price, name, user,
-                                  pickup_location, destination, weight)
+            parcel_order = Parcel(
+                price, name, User, pickup_location, destination, weight)
             parcels.append(parcel_order)
             return parcel_order
             return {"message": "order successful"}, 201
@@ -43,11 +43,10 @@ class GetAllParcels(Resource):
 
 
 class GetSpecificParcelOrder(Resource):
-    parser = reqparse.RequestParser()
 
-    def get(self, parcel_id):
+    def get(self, parcelId):
         """ Get a specific order"""
-        parcel = Parcel().get_parcel_by_id(parcel_id)
+        parcel = Parcel().get_parcel_by_id(parcelId)
 
         if not parcel:
             return {"message": "parcel not found"}, 404
@@ -66,8 +65,13 @@ class CancelParcel(Resource):
         return {"message": "order not found"}, 400
 
 
-# class GetUserParcels(Resource):
-#     '''Get parcel orders for specific users'''
+class GetUserParcels(Resource):
+    '''Get parcel orders for specific users'''
 
-#     def get(self, id):
-#         for parcel in parcels:
+    def get(self, userId):
+        user_parcel = User()
+        user_parcels = user_parcel. get_user_parcels(userId)
+
+        return {
+            'message': user_parcels
+        }, 200
