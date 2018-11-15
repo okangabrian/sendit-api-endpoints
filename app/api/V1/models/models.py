@@ -28,8 +28,9 @@ class User():
 class Parcel():
     parcel_id_counter = 1
 
-    def __init__(self, specific_user=None, price=None, name=None, orderd_by=None,
-                 pickup_location=None, destination=None, weight=None, status="pending"):
+    def __init__(self, specific_user=None, price=None, name=None,
+                 orderd_by=None, pickup_location=None, destination=None,
+                 weight=None, status="pending"):
         self.specifc_user = specific_user
         self.price = price
         self.name = name
@@ -50,8 +51,8 @@ class Parcel():
 
     def get_specific_user_parcels(self, specific_user):
         userr = [
-            parcel for parcel in parcels if parcel.specific_user == userr]
-        return userr
+            parcel for parcel in parcels if parcel.specific_user == user]
+        return user
 
     def serialize(self):
         '''return tuple as dictionary'''
