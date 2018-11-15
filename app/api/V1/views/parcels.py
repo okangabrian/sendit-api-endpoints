@@ -21,10 +21,7 @@ class PostParcel(Resource):
         destination = data["destination"]
         weight = data["weight"]
 
-        if not validate_username(self, name):
-            return {"message": "enter a correct name format"}, 400
-
-            if type(price) != int:
+           if type(price) != int:
                 return {"message": "please enter an integer"}, 400
             if type(weight) != int:
                 return {"message": "enter a valid weight"}, 400
