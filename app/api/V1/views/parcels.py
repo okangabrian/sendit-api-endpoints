@@ -55,6 +55,7 @@ class GetSpecificParcelOrder(Resource):
 
 
 class CancelParcel(Resource):
+
     def put(self, parcel_id):
         parcel = Parcel().get_parcel_by_id(parcel_id)
         if parcel:
@@ -65,8 +66,8 @@ class CancelParcel(Resource):
         return {"message": "order not found"}, 400
 
 
-class GetUserParcels(Resource):
-    '''Get parcel orders for specific users'''
+# class GetUserParcels(Resource):
+#     '''Get parcel orders for specific users'''
 
-    # def get(self, id):
-    #     for parcel in parcels:
+#     def get(self, id):
+#         for parcel in parcels:

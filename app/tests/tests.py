@@ -70,11 +70,21 @@ class TestApp(TestCase):
         self.assertEqual(response.status_code, 201)
 
     def test_get_parcels(self):
-
+        """ Test get parcels"""
         response = self.client.get(
             "/parcels",
             headers={"content-type": "application/json"}
         )
         self.assertEqual(response.status, 200)
 
-    def test_get_specific(self):
+    # def test_cancel_parcel(self):
+    #     """ Test cancel parcels"""
+    #     response = self.client.put(
+    #         '/<int:parcel_id>/cancel',
+    #         data=json.dumps(response.data
+    #     )
+    #     self.assertEqual(response.status_code, 200)
+
+    # def test_get_pecific_parcel(self):
+    #     """ Test get specific parcel"""
+    #     response + self.client
