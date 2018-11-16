@@ -49,10 +49,12 @@ pip install -r requirements.txt
 ##  Working endpoints
 
     Post '/auth/signup' Register a new user
-    Post '/auth/login'  user logi
+    Post '/auth/login'  user login
     Post '/parcel'     Post a new parcel
     Get  '/parcels'   Get all parcels
     Get  '/parcels/<int:parcel_id>' Get specific parcel
+    Get  '/users/<int:user_id>/parcels' get a users all parcels
+    Put  '/<int:parcel_id>/cancel'   Cancel a parcel order
     
 
 ## post new parcel
