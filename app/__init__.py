@@ -9,6 +9,7 @@ from .api.V1.views.parcels import GetAllParcels
 from .api.V1.views.parcels import CancelParcel
 from .api.V1.views.parcels import GetUserParcels
 
+
 jwt = JWTManager()
 
 
@@ -23,5 +24,6 @@ def create_app():
     sendIt.add_resource(GetSpecificParcelOrder, '/parcels/<int:parcel_id>')
     sendIt.add_resource(Login, '/auth/login')
     sendIt.add_resource(CancelParcel,  '/<int:parcel_id>/cancel')
+    sendIt.add_resource(GetUserParcels,  '/users/<int:user_id>/parcels')
 
     return app

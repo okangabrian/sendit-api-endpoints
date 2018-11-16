@@ -1,7 +1,7 @@
 from ..models.models import Parcel, User, users, parcels
+
 from flask_restful import Resource, reqparse
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from flask import Blueprint, render_template
 
 
 class PostParcel(Resource):
@@ -27,39 +27,39 @@ class PostParcel(Resource):
                               pickup_location, destination, weight)
         parcels.append(parcel_order)
 
-        return {"message": "order successful"}, 201
+        return {"message": "order successful", "data": parcel_order.serialize()}, 201
 
 
-class Get_all_Parcels(Resource):
+class GetAllParcels(Resource):
     def get(self):
         """ method get all parcel orders"""
         return {"orders": [order.serialize() for order in parcels]}, 200
 
 
-class Get_specific_parcel_order(Resource):
-    parser = reqparse.RequestParser()
+class GetSpecificParcelOrder(Resource):
 
     def get(self, parcel_id):
         """ Get a specific order"""
         parcel = Parcel().get_parcel_by_id(parcel_id)
-
-        if not parcel:
-            return {"message": "parcel not found"}, 404
-        return{"message": parcel.serialize()}, 200
-
-
-class Cancel_parcel(Resource):
-    def put(self, parcelId):
-        '''Cancel a parcel'''
-        parcel = Parcel().get_parcel_by_id(parcelId)
-
-        if not parcel:
-            return {'message': 'parcel not found'}, 404
-        return {
-            "message": "parcel cancelled successfully"
-        }, 200
+        if parcel:
+            return{"parcel": parcel.serialize()}, 200
+        return {"message": "parcel not found"}
 
 
-class Get_user_parcels(Resource):
-    '''Get parcel orders for specific users'''
-    parser = reqparse.RequestParser()
+class CancelParcel(Resource):
+
+    def put(self, parcel_id):
+        parcel = Parcel().get_parcel_by_id(parcel_id)
+        if parcel:
+            if parcel.status == "cancelled":
+                return {"message": "parcel already cancelled"}
+            parcel.status == "cancelled"
+            return {"message": "parcel order cancelled"}, 200
+        return {"message": "order not found"}, 400
+
+
+class GetUserParcels(Resource):
+    '''Get user parcel orders '''
+
+    def get(self, user_id):
+        return{"userParcels": [order.serialize() for order in parcels if order.user_id == user_id]}, 200
