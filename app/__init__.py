@@ -1,6 +1,6 @@
 from flask_restful import Api
 from flask import Flask
-from flask_jwt_extended import JWTManager
+#from flask_jwt_extended import JWTManager
 from .api.V1.views.user import PostUser, Login
 
 from .api.V1.views.parcels import PostParcel
