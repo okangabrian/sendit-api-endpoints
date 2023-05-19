@@ -1,5 +1,4 @@
 [![Coverage Status](https://coveralls.io/repos/github/okangabrian/sendit-api-endpoints/badge.svg?branch=develop)](https://coveralls.io/github/okangabrian/sendit-api-endpoints?branch=develop)
-[![Coverage Status](https://coveralls.io/repos/github/okangabrian/sendit-api-endpoints/badge.svg?branch=develop)](https://coveralls.io/github/okangabrian/sendit-api-endpoints?branch=develop)
 
 # Sendit
 
@@ -89,4 +88,9 @@ nosetests --with-coverage --cover-package=app
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+=======
+# sendit-api-endpoints
+-initial
+
 
