@@ -4,6 +4,9 @@ bin-release/
 [Oo]bj/
 [Bb]in/
 
+
+
+
 # Other files and folders
 *.pyc
 .settings/
@@ -15,7 +18,11 @@ __pycache__/
 .pytest_cache
 
 # Executables
+*.apk
 *.swf
 *.air
 *.ipa
 *.apk
+
+
+
